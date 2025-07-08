@@ -1,15 +1,15 @@
-group 'com.huawei.hms.flutter.push'
-version '1.0'
+group "com.huawei.hms.flutter.push"
+version "1.0"
 
 buildscript {
     repositories {
         google()
         mavenCentral()
-        maven { url 'https://developer.huawei.com/repo/' }
+        maven { url "https://developer.huawei.com/repo/" }
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.6.0'
+        classpath "com.android.tools.build:gradle:3.6.0"
     }
 }
 
@@ -17,27 +17,25 @@ rootProject.allprojects {
     repositories {
         google()
         mavenCentral()
-        maven { url 'https://developer.huawei.com/repo/' }
+        maven { url "https://developer.huawei.com/repo/" }
     }
 }
 
-apply plugin: 'com.android.library'
+apply plugin: "com.android.library"
 
 android {
-    compileSdkVersion 33
-    buildToolsVersion "31.0.0"
+    namespace 'com.huawei.hms.flutter.push' // ✅ Added to fix AGP 8.0+ compatibility
 
-    if (project.android.hasProperty("namespace")) {
-        namespace 'com.huawei.hms.flutter.push'
-    }
+    compileSdkVersion 33
+    buildToolsVersion '31.0.0'
 
     defaultConfig {
-        minSdkVersion 20
+        minSdkVersion 19
         targetSdkVersion 33
     }
 
     lintOptions {
-        disable 'InvalidPackage'
+        disable "InvalidPackage"
     }
 
     compileOptions {
@@ -47,6 +45,6 @@ android {
 }
 
 dependencies {
-    implementation 'com.huawei.hms:push:6.13.0.300'
-    implementation 'androidx.interpolator:interpolator:1.0.0'
+    implementation "com.huawei.hms:push:6.12.0.300"
+    implementation "com.facebook.fresco:fresco:3.1.3"
 }
